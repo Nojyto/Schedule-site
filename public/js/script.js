@@ -28,8 +28,6 @@ function SecToHMS(s) {
 
 
 function updateTime(d){
-    //console.log(d)
-
     if(timetable[8].e < d){
         text.innerHTML = "Šulė baigės"
         time.innerHTML = ""
@@ -49,10 +47,7 @@ function updateTime(d){
     }
 }
 
-
-
-
-window.onload = () => {
+/*window.onload = () => {
     //test
     const d = new Date()
     updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours() - 13, d.getMinutes() +32, d.getSeconds()).toLocaleTimeString("en-US", timeOptions))
@@ -60,11 +55,11 @@ window.onload = () => {
         const d = new Date()
         updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours() - 13, d.getMinutes()+32, d.getSeconds()).toLocaleTimeString("en-US", timeOptions))
     }, 1000)
-}
+}*/
 
-/*window.onload = () => {
+window.onload = () => {
     updateTime(new Date().toLocaleTimeString("en-US", timeOptions))
     window.setInterval(() => {
         updateTime(new Date().toLocaleTimeString("en-US", timeOptions))
     }, 1000)
-}*/
+}
