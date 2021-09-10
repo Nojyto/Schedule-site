@@ -24,7 +24,7 @@
   border-radius: 6px;
 }
 
-.flexContainer, header, main, footer {
+.flexContainer, header, main, main div, main div #time, footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,7 +36,7 @@
           align-items: center;
 }
 
-.component, header, footer {
+.component, header, main div, footer {
   -webkit-box-shadow: 0 0 15px #000000;
           box-shadow: 0 0 15px #000000;
   background-color: #1B1B1B;
@@ -50,7 +50,7 @@
   user-select: none;
 }
 
-.textShadow, #time, #text {
+.textShadow, main div #time, main div #text {
   color: #F1F1F1;
   text-shadow: 1px 0 0 #1B1B1B, 0 -1px 0 #1B1B1B, 0 1px 0 #1B1B1B, -1px 0 0 #1B1B1B;
 }
@@ -83,28 +83,41 @@ header img {
 }
 
 main {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   width: 100%;
   height: 95%;
   margin: 0 0 64px 0;
   color: #F1F1F1;
 }
 
-#time, #text {
+main div {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 85%;
+  height: 65%;
+  padding: 10px;
+}
+
+main div #time, main div #text {
   margin: 6px;
   text-align: center;
+  width: 100%;
 }
 
-#time {
+main div #text {
+  font-size: 50px;
+  line-height: 1.35;
+}
+
+main div #time {
   font-size: 64px;
   font-weight: 500;
+  line-height: 1.35;
 }
 
-#text {
-  font-size: 50px;
+main div #time #curSec {
+  color: #e43213;
 }
 
 footer {
@@ -116,5 +129,14 @@ footer {
 footer p {
   font-size: 14px;
   color: #F1F1F1;
+}
+
+@media only screen and (min-width: 1080px) {
+  main div #text {
+    font-size: 100px;
+  }
+  main div #time {
+    font-size: 128px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
