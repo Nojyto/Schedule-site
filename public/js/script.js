@@ -74,6 +74,7 @@ function updateTime(d, wd){
 
 window.onload = async () => {
     //await Notification.requestPermission()
+    document.body.scrollTop = document.documentElement.scrollTop = 0
     updateTime(new Date().toLocaleTimeString("en-US", timeOptions), new Date().getDay())
     ScrollReveal().reveal(".hero", {distance: '60px', duration: 1500, delay: 150,})
     window.setInterval(() => {
