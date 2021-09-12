@@ -24,7 +24,7 @@
   border-radius: 6px;
 }
 
-.flexContainer, header, main, main div, main div #time, footer {
+.flexContainer, header, main, main .hero, main .hero #time, footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,7 +36,7 @@
           align-items: center;
 }
 
-.component, header, main div, footer {
+.component, header, main .hero, footer {
   -webkit-box-shadow: 0 0 15px #000000;
           box-shadow: 0 0 15px #000000;
   background-color: #1B1B1B;
@@ -50,7 +50,7 @@
   user-select: none;
 }
 
-.textShadow, main div #time, main div #text {
+.textShadow, main .hero #time, main .hero #text {
   color: #F1F1F1;
   text-shadow: 1px 0 0 #1B1B1B, 0 -1px 0 #1B1B1B, 0 1px 0 #1B1B1B, -1px 0 0 #1B1B1B;
 }
@@ -85,11 +85,11 @@ header img {
 main {
   width: 100%;
   height: 95%;
-  margin: 0 0 64px 0;
+  margin-top: 32px;
   color: #F1F1F1;
 }
 
-main div {
+main .hero {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -99,24 +99,24 @@ main div {
   padding: 10px;
 }
 
-main div #time, main div #text {
+main .hero #time, main .hero #text {
   margin: 6px;
   text-align: center;
   width: 100%;
 }
 
-main div #text {
+main .hero #text {
   font-size: 50px;
   line-height: 1.35;
 }
 
-main div #time {
+main .hero #time {
   font-size: 64px;
   font-weight: 500;
   line-height: 1.35;
 }
 
-main div #time #curSec {
+main .hero #time #curSec {
   color: #e43213;
 }
 
@@ -132,10 +132,10 @@ footer p {
 }
 
 @media only screen and (min-width: 1080px) {
-  main div #text {
+  main > .hero > #text {
     font-size: 100px;
   }
-  main div #time {
+  main > .hero > #time {
     font-size: 128px;
   }
 }

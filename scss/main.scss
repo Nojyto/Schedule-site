@@ -31,10 +31,10 @@ main {
     @extend .flexContainer;
     width: 100%;
     height: 95%;
-    margin: 0 0 64px 0;
+    margin-top: 32px;
     color: $white;
 
-    div {
+    .hero {
         
         @extend .component;
         @extend .flexContainer;
@@ -81,10 +81,10 @@ footer {
 }
 
 @media only screen and (min-width: 1080px) {
-    main div #text {
+    main > .hero > #text {
         font-size: 100px;
     }
-    main div #time {
+    main > .hero > #time {
         font-size: 128px;
     }
 }
