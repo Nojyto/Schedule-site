@@ -2,16 +2,18 @@ const timeOptions = {hour: "numeric", minute: "numeric", second: "numeric", hour
 const text        = document.getElementById("text")
 const curTime     = document.getElementById("curTime")
 const curSec      = document.getElementById("curSec")
+const table       = document.getElementById("table")
+const dropper     = document.getElementById("dropper")
 const timetable   = [
-    {s : "07:10:00", e : "07:55:00", i : 0, "Pirmadienis" : "Fizika (M)",   "Antradienis" : "",              "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "08:00:00", e : "08:45:00", i : 1, "Pirmadienis" : "Fizika",       "Antradienis" : "",              "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "08:55:00", e : "09:40:00", i : 2, "Pirmadienis" : "Fizika",       "Antradienis" : "Matematika",    "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "09:50:00", e : "10:35:00", i : 3, "Pirmadienis" : "Anglų k.",     "Antradienis" : "Technologijos", "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "11:05:00", e : "11:50:00", i : 4, "Pirmadienis" : "Matematika",   "Antradienis" : "Anglų k.",      "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "12:10:00", e : "12:55:00", i : 5, "Pirmadienis" : "Kūno kultūra", "Antradienis" : "Anglų k.",      "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "13:05:00", e : "13:50:00", i : 6, "Pirmadienis" : "Anglų k.",     "Antradienis" : "Matematika",    "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "13:55:00", e : "14:40:00", i : 7, "Pirmadienis" : "Matematika",   "Antradienis" : "Geografija",    "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
-    {s : "14:45:00", e : "15:30:00", i : 8, "Pirmadienis" : "",             "Antradienis" : "",              "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "07:10:00", e : "07:55:00", i : 0, Pir : "Fizika (M)",   Ant : "",              Tre : "",             Ket : "Programavimas", Pen : ""},
+    {s : "08:00:00", e : "08:45:00", i : 1, Pir : "Fizika",       Ant : "",              Tre : "",             Ket : "Programavimas", Pen : "Geografija"},
+    {s : "08:55:00", e : "09:40:00", i : 2, Pir : "Fizika",       Ant : "Matematika",    Tre : "Tikyba",       Ket : "Lietuvių k.",   Pen : "Geografija"},
+    {s : "09:50:00", e : "10:35:00", i : 3, Pir : "Anglų k.",     Ant : "Technologijos", Tre : "Matematika",   Ket : "Lietuvių k.",   Pen : "Lietuvių k."},
+    {s : "11:05:00", e : "11:50:00", i : 4, Pir : "Matematika",   Ant : "Anglų k.",      Tre : "Kūno kultūra", Ket : "Technologijos", Pen : "Lietuvių k."},
+    {s : "12:10:00", e : "12:55:00", i : 5, Pir : "Kūno kultūra", Ant : "Anglų k.",      Tre : "Lietuvių k.",  Ket : "Anglų k.",      Pen : "Matematika"},
+    {s : "13:05:00", e : "13:50:00", i : 6, Pir : "Anglų k.",     Ant : "Matematika",    Tre : "Lietuvių k.",  Ket : "Braižyba",      Pen : "Fizika"},
+    {s : "13:55:00", e : "14:40:00", i : 7, Pir : "Matematika",   Ant : "Geografija",    Tre : "",             Ket : "",              Pen : "Fizika"},
+    {s : "14:45:00", e : "15:30:00", i : 8, Pir : "",             Ant : "",              Tre : "",             Ket : "",              Pen : ""},
 ]
 
 function HMSToSec(s) {
@@ -63,7 +65,7 @@ function updateTime(d, wd){
     }
 }
 
-/*function updateTable(wd){
+function updateTable(wd){
     const getDay = (w) => {
         switch(w){
             case 0:  return "Pirmadienis"
@@ -78,33 +80,48 @@ function updateTime(d, wd){
     }
     const weekDay = getDay(wd)
     document.getElementById("weekDay").innerHTML = weekDay
+
     for(let i = 0; i <= 8; i++){
-        document.getElementById(`les${i}`).innerHTML = timeOptions[i].weekDay
+        document.getElementById(`lesName${i}`).innerHTML = timetable[i][`${weekDay.substring(0, 3)}`]
     }
+}
 
-}*/
+function dropTimeTable() {
+    let isTable = dropper.checked
+    if(isTable){
+        console.log("removed")
+        table.classList.remove("hideEl")
+    }else{
+        console.log("added")
+        table.classList.add("hideEl")
+    }
+    isTable = !isTable
+}
 
-/*window.onload = () => {
+window.onload = () => {
     //test
     const d = new Date()
     updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours(), d.getMinutes(), d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
     ScrollReveal().reveal(".hero", {distance: '60px', duration: 1500, delay: 150,})
+    updateTable(d.getDay() - 1)
     window.setInterval(() => {
         const d = new Date()
         updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours() -6, d.getMinutes(), d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
     }, 1000)
-}*/
+}
 
-window.onload = async () => {
+/*window.onload = async () => {
     document.body.scrollTop = document.documentElement.scrollTop = 0
 
     const tmpDate = new Date()
     updateTime(tmpDate.toLocaleTimeString("en-US", timeOptions), tmpDate.getDay())
-
-    ScrollReveal().reveal(".hero", {distance: '60px', duration: 1500, delay: 150,})
+    
+    ScrollReveal().reveal(".hero",      {distance: '60px', duration: 1500, delay: 150,})
     ScrollReveal().reveal(".timetable", {distance: '60px', duration: 1500, delay: 150,})
+    
+    updateTable(tmpDate.getDay())
 
     window.setInterval(() => {
         updateTime(new Date().toLocaleTimeString("en-US", timeOptions), tmpDate.getDay())
     }, 1000)
-}
+}*/
