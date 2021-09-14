@@ -89,16 +89,14 @@ function updateTable(wd){
 function dropTimeTable() {
     let isTable = dropper.checked
     if(isTable){
-        console.log("removed")
         table.classList.remove("hideEl")
     }else{
-        console.log("added")
         table.classList.add("hideEl")
     }
     isTable = !isTable
 }
 
-window.onload = () => {
+/*window.onload = () => {
     //test
     const d = new Date()
     updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours(), d.getMinutes(), d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
@@ -108,20 +106,19 @@ window.onload = () => {
         const d = new Date()
         updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours() -6, d.getMinutes(), d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
     }, 1000)
-}
+}*/
 
-/*window.onload = async () => {
+window.onload = async () => {
     document.body.scrollTop = document.documentElement.scrollTop = 0
 
     const tmpDate = new Date()
     updateTime(tmpDate.toLocaleTimeString("en-US", timeOptions), tmpDate.getDay())
     
     ScrollReveal().reveal(".hero",      {distance: '60px', duration: 1500, delay: 150,})
-    ScrollReveal().reveal(".timetable", {distance: '60px', duration: 1500, delay: 150,})
-    
-    updateTable(tmpDate.getDay())
+    //ScrollReveal().reveal(".timetable", {distance: '60px', duration: 1500, delay: 150,})
+    updateTable(tmpDate.getDay() + ((tmpDate.getHours() >= 14) ? 1 : 0))
 
     window.setInterval(() => {
         updateTime(new Date().toLocaleTimeString("en-US", timeOptions), tmpDate.getDay())
     }, 1000)
-}*/
+}
