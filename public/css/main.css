@@ -24,7 +24,7 @@
   border-radius: 6px;
 }
 
-.flexContainer, header, main, main .hero, main .hero #time, footer {
+.flexContainer, header, main, main .hero, main .hero #time, main .timetable, footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36,7 +36,7 @@
           align-items: center;
 }
 
-.component, header, main .hero, footer {
+.component, header, main .hero, main .timetable, footer {
   -webkit-box-shadow: 0 0 15px #000000;
           box-shadow: 0 0 15px #000000;
   background-color: #1B1B1B;
@@ -61,10 +61,6 @@ html {
   height: 100%;
 }
 
-body {
-  height: 100%;
-}
-
 header {
   -webkit-box-pack: left;
       -ms-flex-pack: left;
@@ -82,11 +78,18 @@ header img {
   margin: 4px;
 }
 
+body {
+  height: 100%;
+}
+
 main {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   height: 95%;
-  margin-top: 32px;
-  margin-bottom: 15px;
+  margin-top: 96px;
   color: #F1F1F1;
 }
 
@@ -98,6 +101,7 @@ main .hero {
   width: 85%;
   height: 65%;
   padding: 10px;
+  margin-bottom: 30px;
 }
 
 main .hero #time, main .hero #text {
@@ -119,6 +123,34 @@ main .hero #time {
 
 main .hero #time #curSec {
   color: #e43213;
+}
+
+main .timetable {
+  margin-bottom: 30px;
+  width: 85%;
+  padding: 20px;
+}
+
+main .timetable th, main .timetable td {
+  border: 1px solid #F1F1F1;
+  text-align: center;
+  padding: 5px 8px;
+  margin: 5px;
+  border-radius: 1.5px;
+}
+
+main .timetable .day {
+  background-color: #F1F1F1;
+  color: #1B1B1B;
+  font-weight: 700px;
+}
+
+main .timetable .cur {
+  background-color: #e43213;
+}
+
+main .timetable .next {
+  background-color: green;
 }
 
 footer {

@@ -3,17 +3,16 @@ const text        = document.getElementById("text")
 const curTime     = document.getElementById("curTime")
 const curSec      = document.getElementById("curSec")
 const timetable   = [
-    {s : "07:10:00", e : "07:55:00", i : 0},
-    {s : "08:00:00", e : "08:45:00", i : 1},
-    {s : "08:55:00", e : "09:40:00", i : 2},
-    {s : "09:50:00", e : "10:35:00", i : 3},
-    {s : "11:05:00", e : "11:50:00", i : 4},
-    {s : "12:10:00", e : "12:55:00", i : 5},
-    {s : "13:05:00", e : "13:50:00", i : 6},
-    {s : "13:55:00", e : "14:40:00", i : 7},
-    {s : "14:45:00", e : "15:30:00", i : 8},
+    {s : "07:10:00", e : "07:55:00", i : 0, "Pirmadienis" : "Fizika (M)",   "Antradienis" : "",              "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "08:00:00", e : "08:45:00", i : 1, "Pirmadienis" : "Fizika",       "Antradienis" : "",              "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "08:55:00", e : "09:40:00", i : 2, "Pirmadienis" : "Fizika",       "Antradienis" : "Matematika",    "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "09:50:00", e : "10:35:00", i : 3, "Pirmadienis" : "Anglų k.",     "Antradienis" : "Technologijos", "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "11:05:00", e : "11:50:00", i : 4, "Pirmadienis" : "Matematika",   "Antradienis" : "Anglų k.",      "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "12:10:00", e : "12:55:00", i : 5, "Pirmadienis" : "Kūno kultūra", "Antradienis" : "Anglų k.",      "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "13:05:00", e : "13:50:00", i : 6, "Pirmadienis" : "Anglų k.",     "Antradienis" : "Matematika",    "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "13:55:00", e : "14:40:00", i : 7, "Pirmadienis" : "Matematika",   "Antradienis" : "Geografija",    "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
+    {s : "14:45:00", e : "15:30:00", i : 8, "Pirmadienis" : "",             "Antradienis" : "",              "Trečiadienis" : "", "Ketvirtadienis" : "", "Penktadienis" : ""},
 ]
-
 
 function HMSToSec(s) {
     let b = s.split(':')
@@ -29,6 +28,11 @@ function SecToHMS(s) {
 
 function updateTime(d, wd){
     //console.log(d, wd)
+
+    for(let i = 0; i <= 8; i++){
+        document.getElementById(`les${i}`).className = ""
+    }
+
     if((timetable[8].e < d && wd == 5) || wd == 6 || wd == 0){
         text.innerHTML    = "Savaitgalis"
         curTime.innerHTML = ""
@@ -44,6 +48,7 @@ function updateTime(d, wd){
                 text.innerHTML    = `${curEv.i} pamoka prasideda už`
                 curTime.innerHTML = `${curDate[0]}∶${curDate[1]}∶`
                 curSec.innerHTML  = `${curDate[2]}`
+                document.getElementById(`les${curEv.i}`).classList.add("next")
                 break
             }
             if(d < curEv.e){
@@ -51,34 +56,55 @@ function updateTime(d, wd){
                 text.innerHTML    = `${curEv.i} pamoka baigias už`
                 curTime.innerHTML = `${curDate[0]}∶${curDate[1]}∶`
                 curSec.innerHTML  = `${curDate[2]}`
+                document.getElementById(`les${curEv.i}`).classList.add("cur")
                 break
-                /*if(HMSToSec(curEv.e) - HMSToSec(d) == 5 * 60){
-                    const endOfReminder = new Notification("5 min ligi pamokos pabaigos", {icon: "dependencies/clock.png"})
-                    greeting.onclick = () => window.open(window.location.href)
-                }*/
             }
         }
     }
 }
 
+/*function updateTable(wd){
+    const getDay = (w) => {
+        switch(w){
+            case 0:  return "Pirmadienis"
+            case 1:  return "Pirmadienis"
+            case 2:  return "Antradienis"
+            case 3:  return "Trečiadienis"
+            case 4:  return "Ketvirtadienis"
+            case 5:  return "Penktadienis"
+            case 6:  return "Pirmadienis"
+            default: return "error"
+        }
+    }
+    const weekDay = getDay(wd)
+    document.getElementById("weekDay").innerHTML = weekDay
+    for(let i = 0; i <= 8; i++){
+        document.getElementById(`les${i}`).innerHTML = timeOptions[i].weekDay
+    }
+
+}*/
+
 /*window.onload = () => {
     //test
     const d = new Date()
-    updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours(), d.getMinutes() +32, d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
+    updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours(), d.getMinutes(), d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
     ScrollReveal().reveal(".hero", {distance: '60px', duration: 1500, delay: 150,})
     window.setInterval(() => {
         const d = new Date()
-        updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours(), d.getMinutes() + 32, d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
+        updateTime(new Date(d.getFullYear(), d.getMonth(), d.getDay() - 3, d.getHours() -6, d.getMinutes(), d.getSeconds()).toLocaleTimeString("en-US", timeOptions), 3)
     }, 1000)
 }*/
 
 window.onload = async () => {
-    //await Notification.requestPermission()
     document.body.scrollTop = document.documentElement.scrollTop = 0
-    updateTime(new Date().toLocaleTimeString("en-US", timeOptions), new Date().getDay())
+
+    const tmpDate = new Date()
+    updateTime(tmpDate.toLocaleTimeString("en-US", timeOptions), tmpDate.getDay())
+
     ScrollReveal().reveal(".hero", {distance: '60px', duration: 1500, delay: 150,})
+    ScrollReveal().reveal(".timetable", {distance: '60px', duration: 1500, delay: 150,})
+
     window.setInterval(() => {
-        updateTime(new Date().toLocaleTimeString("en-US", timeOptions), new Date().getDay())
+        updateTime(new Date().toLocaleTimeString("en-US", timeOptions), tmpDate.getDay())
     }, 1000)
 }
-
