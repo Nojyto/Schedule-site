@@ -37,17 +37,9 @@
     font-weight: 300;
     text-align: center;
     transition: all 0.2s;
-    &:hover{
-        color: $black;
-        background-color: $white;
-    }
     input:checked + & {
         color: $black;
         background-color: $white;
-    }
-    input:checked + &:hover{
-        color: $white;
-        background-color: $darkgrey;
     }
 }
 

@@ -39,7 +39,6 @@ main {
     height: 100%;
     margin-top: 96px;
     color: $white;
-
     .hero {
         @extend .component;
         @extend .flexContainer;
@@ -72,6 +71,7 @@ main {
                 color: $red;
             }
         }
+        
     }
 
     .timetable{
@@ -92,7 +92,7 @@ main {
         .day {
             background-color: $white;
             color: $black;
-            font-weight: 700px;
+            font-weight: 600;
         }
         .cur{
             background-color: $red;
@@ -126,5 +126,18 @@ footer {
     }
     main > .hero > #time {
         font-size: 128px;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .toggle{
+        &:hover{
+            color: $black;
+            background-color: $white;
+        }
+        input:checked + &:hover{
+            color: $white;
+            background-color: $darkgrey;
+        }
     }
 }

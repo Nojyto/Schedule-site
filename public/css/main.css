@@ -75,19 +75,9 @@ input[type=checkbox] {
   transition: all 0.2s;
 }
 
-.toggle:hover {
-  color: #1B1B1B;
-  background-color: #F1F1F1;
-}
-
 input:checked + .toggle {
   color: #1B1B1B;
   background-color: #F1F1F1;
-}
-
-input:checked + .toggle:hover {
-  color: #F1F1F1;
-  background-color: #292929;
 }
 
 .hideEl {
@@ -189,7 +179,7 @@ main .timetable th, main .timetable td {
 main .timetable .day {
   background-color: #F1F1F1;
   color: #1B1B1B;
-  font-weight: 700px;
+  font-weight: 600;
 }
 
 main .timetable .cur {
@@ -221,6 +211,17 @@ footer p {
   }
   main > .hero > #time {
     font-size: 128px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .toggle:hover {
+    color: #1B1B1B;
+    background-color: #F1F1F1;
+  }
+  input:checked + .toggle:hover {
+    color: #F1F1F1;
+    background-color: #292929;
   }
 }
 /*# sourceMappingURL=main.css.map */
